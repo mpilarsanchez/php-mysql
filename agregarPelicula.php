@@ -1,6 +1,10 @@
 <?php
 include("pdo.php");
-include("guardar.php");
+include("funciones_guardar_peliculas.php");
+
+
+	$generos = traerGenero(abrirBaseDeDatos());
+
 
 if ($_POST){
 	guardarPelicula(abrirBaseDeDatos());
@@ -53,6 +57,13 @@ if ($_POST){
 				<?php for ($i=1; $i < 32; $i++) { ?>
 					<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 				<?php } ?>
+			</select>
+		</div>
+		<div class="genero">
+			<select class="genero" name="genre">
+				<?php foreach ($generos as $genero) : ?>
+					<option value="<?php echo $genero["id"] ?>"><?php echo $genero["name"] ?></option>
+				<?php endforeach; ?>
 			</select>
 		</div>
 		<button type="submit">Guardar película</button>
